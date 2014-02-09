@@ -28,7 +28,7 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set relativenumber
-"set undofile
+set undofile
 
 set ignorecase
 set smartcase
@@ -63,3 +63,10 @@ let g:syntastic_html_checkers=['w3']
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
+
+augroup reload_vimrc " {
+	autocmd!
+	autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+
+nnoremap <leader>jc :SyntasticJavacEditClasspath<cr>
