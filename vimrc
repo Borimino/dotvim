@@ -60,3 +60,6 @@ nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 
 let g:syntastic_html_checkers=['w3']
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
