@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/markus/Dropbox/UNI/dWebTek'
+let g:netrw_dirhist_2='/home/markus/Dropbox/UNI/dWebTek/WebTekWebShop/TomcatServer/src'
+let g:netrw_dirhist_3='/home/markus/apache-tomcat-7.0.50/webapps/webshop/js'

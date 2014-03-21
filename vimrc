@@ -1,6 +1,7 @@
 filetype off
 execute pathogen#infect()
 filetype plugin indent on
+au BufNewFile,BufRead *.ino set filetype=cpp
 
 set nocompatible
 
@@ -40,8 +41,8 @@ set hlsearch
 nnoremap <leader><space> :noh<cr>
 
 "Move to matching brackets
-nnoremap <tab> %
-vnoremap <tab> %
+"nnoremap <tab> %
+"vnoremap <tab> %
 
 set wrap
 set textwidth=79
@@ -60,6 +61,7 @@ nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 
 let g:syntastic_html_checkers=['w3']
+let g:syntastic_java_checkers=['javac']
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
@@ -70,3 +72,5 @@ augroup reload_vimrc " {
 augroup END " }
 
 nnoremap <leader>jc :SyntasticJavacEditClasspath<cr>
+
+let g:EclimCompletionMethod = 'omnifunc'
