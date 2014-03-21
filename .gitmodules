@@ -40,3 +40,6 @@
 [submodule "bundle/taglist"]
 	path = bundle/taglist
 	url = https://github.com/vim-scripts/taglist.vim.git
+[submodule "bundle/codecomplete"]
+	path = bundle/codecomplete
+	url = https://github.com/mbbill/code_complete.git
