@@ -43,3 +43,6 @@
 [submodule "bundle/codecomplete"]
 	path = bundle/codecomplete
 	url = https://github.com/mbbill/code_complete.git
+[submodule "bundle/ctags"]
+	path = bundle/ctags
+	url = https://github.com/fishman/ctags.git

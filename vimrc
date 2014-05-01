@@ -44,10 +44,10 @@ nnoremap <leader><space> :noh<cr>
 "nnoremap <tab> %
 "vnoremap <tab> %
 
-set wrap
-set textwidth=79
-set formatoptions=qrn1
-set colorcolumn=85
+"set wrap
+"set textwidth=79
+"set formatoptions=qrn1
+"set colorcolumn=85
 
 "Open the .vimrc in vertical
 nnoremap <leader>vi <C-w><C-v><C-l>:e $MYVIMRC<cr>
@@ -74,3 +74,10 @@ augroup END " }
 nnoremap <leader>jc :SyntasticJavacEditClasspath<cr>
 
 let g:EclimCompletionMethod = 'omnifunc'
+
+set tags=./tags;/
+
+noremap <C-o> <C-T>
+noremap <C-i> <C-]>
+
+let g:syntastic_java_javac_config_file_enabled = 1
