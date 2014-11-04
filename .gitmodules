@@ -22,9 +22,6 @@
 [submodule "bundle/rainbow_parentheses"]
 	path = bundle/rainbow_parentheses
 	url = https://github.com/kien/rainbow_parentheses.vim
-[submodule "bundle/Conque-Shell"]
-	path = bundle/Conque-Shell
-	url = https://github.com/vim-scripts/Conque-Shell.git
 [submodule "bundle/vim-indent-guides"]
 	path = bundle/vim-indent-guides
 	url = https://github.com/nathanaelkane/vim-indent-guides
@@ -46,3 +43,12 @@
 [submodule "bundle/ctags"]
 	path = bundle/ctags
 	url = https://github.com/fishman/ctags.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "bundle/vim-slime"]
+	path = bundle/vim-slime
+	url = https://github.com/jpalardy/vim-slime.git
+[submodule "bundle/vim-powerline"]
+	path = bundle/vim-powerline
+	url = https://github.com/Lokaltog/vim-powerline.git
