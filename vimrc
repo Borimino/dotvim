@@ -6,7 +6,9 @@ filetype plugin indent on
 " }}}
 
 " Arduino {{{
-au BufNewFile,BufRead *.ino set filetype=cpp
+"au BufNewFile,BufRead *.ino set filetype=cpp
+
+let g:vim_arduino_library_path = "/home/markus/apps/arduino-1.6.4"
 " }}}
 
 " Automatically source .vimrc on saving {{{
@@ -23,6 +25,8 @@ let mapleader = ","
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set textwidth=0
+set wrapmargin=0
 "set expandtab
 
 set encoding=utf-8
@@ -39,7 +43,8 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber
+set number
+"set relativenumber
 "set undofile
 set nobackup
 set nowritebackup
@@ -54,6 +59,9 @@ set hlsearch
 nnoremap <leader><space> :noh<cr>
 
 let g:ctrlp_match_window = 'top,order:ttb'
+
+set clipboard^=unnamed
+set clipboard^=unnamedplus
 
 "let g:Powerline_symbols = 'fancy'
 " }}}
@@ -88,6 +96,9 @@ vnoremap <leader>s :sort<CR>
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
+nnoremap <leader>o :JavaImportOrganize<CR>
+nnoremap <leader>j :JavaCorrect<CR>
+
 " }}}
 
 " Java {{{
@@ -97,7 +108,7 @@ let g:syntastic_java_checkers=['javac']
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 
-nnoremap <leader>jc :SyntasticJavacEditClasspath<cr>
+"nnoremap <leader>jc :SyntasticJavacEditClasspath<cr>
 
 let g:syntastic_java_javac_config_file_enabled = 1
 
@@ -175,6 +186,20 @@ augroup ft_markdown
 
 " }}}
 
+" RoboWars {{{
+
+augroup ft_robowars
+	au!
+
+	au BufNewFile,BufRead *.bot setlocal filetype=robowars
+
+	au Filetype robowars nnoremap j gj
+	au Filetype robowars nnoremap k gk
+	"au Filetype robowars nnoremap l f 
+	"au Filetype robowars nnoremap h F 
+
+" }}}
+
 " MyThesaurus {{{
 
 set thesaurus+=mythesaurus.txt
@@ -196,6 +221,69 @@ autocmd BufRead *.java set makeprg=ant\ -find\ build.xml
 
 " }}}
 
+" CtrlP {{{
+
+let g:ctrlp_use_caching = 0
+if executable('ag')
+	set grepprg=ag\ --nogroup\ --nocolor
+
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+	let g:ctrlp_prompt_mappings = {
+		\ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+		\ }
+endif
+
+" }}}
+
+" tdd {{{
+
+function! MapCallback(file)
+	if exists("g:myTddTestFile")
+		return g:myTddTestFile
+	endif
+	return ""
+	"return glob('~/Dropbox/UNI/dSoftArk/hotciv-tdd-start/test/hotciv/standard/TestAlphaCiv.java')
+endfunction
+
+autocmd BufNewFile,BufRead *.java execute "let g:tdd_test_command = 'ant test'"
+autocmd BufNewFile,BufRead *.java execute "let g:tdd_map_callback = 'MapCallback'"
+autocmd BufNewFile,BufRead *.java execute "let g:tdd_fail_command = 'espeak failure'"
+autocmd BufNewFile,BufRead *.java execute "let g:tdd_success_command = 'espeak success'"
+"autocmd BufNewFile,BufRead *.java execute "let g:tdd_tmux_target = '0.1'"
+
+" }}}
+
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
 	set t_Co=256
 endif
+
+" Remap autocomplete menu control keys
+inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> j pumvisible() ? "\<C-n>" : "j"
+inoremap <expr> k pumvisible() ? "\<C-p>" : "k"
+inoremap <expr> h pumvisible() ? "\<PageUp>\<C-n>\<C-p>" : "h"
+inoremap <expr> l pumvisible() ? "\<PageDown>\<C-n>\<C-p>" : "l"
+"
+let g:SuperTabCrMapping = 0 " prevent remap from breaking supertab
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+set wildmode=list:longest,full
+let g:SuperTabClosePreviewOnPopupClose = 1 " close scratch window on autocompletion
+
+let g:ctrlp_custom_ignore = { 'dir': '\v[\/](build)$', 'file': '\v\.(class)$'}
+
+" Easy paste/nopaste
+"noremap <leader>p :set paste<CR>:put "*p<CR>:set nopaste<CR>
+
+" Easy paste/nopaste
+nnoremap <leader>p :set paste!<CR>:set number!<CR>
+
+
+
+
+
+
+colorscheme ron
